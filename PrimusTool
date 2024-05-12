@@ -1,0 +1,258 @@
+import math
+
+def euler_totient(p):
+    """Calculate Euler's totient function φ(n) for prime number p."""
+    return p - 1
+
+def euler_totient_prime(text, primes):
+    encoded_runes = ''
+    for char in text:
+        if char.upper() in primes:
+            prime = primes[char.upper()]['prime']
+            number = primes[char.upper()]['number']
+            encoded_runes += str(euler_totient(prime)) + ' ' + str(prime) + ' ' + str(number) + ' '
+        else:
+            encoded_runes += char
+    return encoded_runes.strip()
+
+
+cicada_runes = {
+    'F': {'number': 0, 'rune': 'ᚠ', 'prime': 2},
+    'V': {'number': 1, 'rune': 'ᚢ', 'prime': 3},
+    'TH': {'number': 2, 'rune': 'ᚦ', 'prime': 5},
+    'O': {'number': 3, 'rune': 'ᚩ', 'prime': 7},
+    'R': {'number': 4, 'rune': 'ᚱ', 'prime': 11},
+    'C(K)': {'number': 5, 'rune': 'ᚳ', 'prime': 13},
+    'G': {'number': 6, 'rune': 'ᚷ', 'prime': 17},
+    'W': {'number': 7, 'rune': 'ᚹ', 'prime': 19},
+    'H': {'number': 8, 'rune': 'ᚻ', 'prime': 23},
+    'N': {'number': 9, 'rune': 'ᚾ', 'prime': 29},
+    'I': {'number': 10, 'rune': 'ᛁ', 'prime': 31},
+    'J': {'number': 11, 'rune': 'ᛄ', 'prime': 37},
+    'EO': {'number': 12, 'rune': 'ᛇ', 'prime': 41},
+    'P': {'number': 13, 'rune': 'ᛈ', 'prime': 43},
+    'X': {'number': 14, 'rune': 'ᛉ', 'prime': 47},
+    'S(Z)': {'number': 15, 'rune': 'ᛋ', 'prime': 53},
+    'T': {'number': 16, 'rune': 'ᛏ', 'prime': 59},
+    'B': {'number': 17, 'rune': 'ᛒ', 'prime': 61},
+    'E': {'number': 18, 'rune': 'ᛖ', 'prime': 67},
+    'M': {'number': 19, 'rune': 'ᛗ', 'prime': 71},
+    'L': {'number': 20, 'rune': 'ᛚ', 'prime': 73},
+    'NG(ING)': {'number': 21, 'rune': 'ᛝ', 'prime': 79},
+    'OE': {'number': 22, 'rune': 'ᛟ', 'prime': 83},
+    'D': {'number': 23, 'rune': 'ᛞ', 'prime': 89},
+    'A': {'number': 24, 'rune': 'ᚪ', 'prime': 97},
+    'AE': {'number': 25, 'rune': 'ᚫ', 'prime': 101},
+    'Y': {'number': 26, 'rune': 'ᚣ', 'prime': 103},
+    'IA(IO)': {'number': 27, 'rune': 'ᛡ', 'prime': 107},
+    'EA': {'number': 28, 'rune': 'ᛠ', 'prime': 109},
+    ' ': {'number': None, 'rune': '᛫', 'prime': None},
+    '.': {'number': None, 'rune': '⁘', 'prime': None},
+    '⁞': {'number': None, 'rune': '⁞', 'prime': None},
+    '-': {'number': None, 'rune': '-', 'prime': None},
+    '&': {'number': None, 'rune': '&', 'prime': None},
+    '§': {'number': None, 'rune': '§', 'prime': None},
+    '/': {'number': None, 'rune': '/', 'prime': None},
+    '%': {'number': None, 'rune': '%', 'prime': None}
+}
+
+altbash_cicada_runes = {
+    'F': {'number': 28, 'rune': 'ᚠ', 'prime': 109},
+    'V': {'number': 27, 'rune': 'ᚢ', 'prime': 107},
+    'TH': {'number': 26, 'rune': 'ᚦ', 'prime': 103},
+    'O': {'number': 25, 'rune': 'ᚩ', 'prime': 101},
+    'R': {'number': 24, 'rune': 'ᚱ', 'prime': 97},
+    'C(K)': {'number': 23, 'rune': 'ᚳ', 'prime': 89},
+    'G': {'number': 22, 'rune': 'ᚷ', 'prime': 83},
+    'W': {'number': 21, 'rune': 'ᚹ', 'prime': 79},
+    'H': {'number': 20, 'rune': 'ᚻ', 'prime': 73},
+    'N': {'number': 19, 'rune': 'ᚾ', 'prime': 71},
+    'I': {'number': 18, 'rune': 'ᛁ', 'prime': 67},
+    'J': {'number': 17, 'rune': 'ᛄ', 'prime': 61},
+    'EO': {'number': 16, 'rune': 'ᛇ', 'prime': 59},
+    'P': {'number': 15, 'rune': 'ᛈ', 'prime': 53},
+    'X': {'number': 14, 'rune': 'ᛉ', 'prime': 47},
+    'S(Z)': {'number': 13, 'rune': 'ᛋ', 'prime': 43},
+    'T': {'number': 12, 'rune': 'ᛏ', 'prime': 41},
+    'B': {'number': 11, 'rune': 'ᛒ', 'prime': 37},
+    'E': {'number': 10, 'rune': 'ᛖ', 'prime': 31},
+    'M': {'number': 9, 'rune': 'ᛗ', 'prime': 29},
+    'L': {'number': 8, 'rune': 'ᛚ', 'prime': 23},
+    'NG(ING)': {'number': 7, 'rune': 'ᛝ', 'prime': 19},
+    'OE': {'number': 6, 'rune': 'ᛟ', 'prime': 17},
+    'D': {'number': 5, 'rune': 'ᛞ', 'prime': 13},
+    'A': {'number': 4, 'rune': 'ᚪ', 'prime': 11},
+    'AE': {'number': 3, 'rune': 'ᚫ', 'prime': 7},
+    'Y': {'number': 2, 'rune': 'ᚣ', 'prime': 5},
+    'IA(IO)': {'number': 1, 'rune': 'ᛡ', 'prime': 3},
+    'EA': {'number': 0, 'rune': 'ᛠ', 'prime': 2},
+    ' ': {'number': None, 'rune': '᛫', 'prime': None},
+    '.': {'number': None, 'rune': '⁘', 'prime': None},
+    '⁞': {'number': None, 'rune': '⁞', 'prime': None},
+    '-': {'number': None, 'rune': '-', 'prime': None},
+    '&': {'number': None, 'rune': '&', 'prime': None},
+    '§': {'number': None, 'rune': '§', 'prime': None},
+    '/': {'number': None, 'rune': '/', 'prime': None},
+    '%': {'number': None, 'rune': '%', 'prime': None}
+}
+
+# Reverse lookup for original Cicada runes:
+rune_to_text_lookup = {v['rune']: k for k, v in cicada_runes.items()}
+
+# Reverse lookup for AltBash Cicada runes:
+altbash_rune_to_text_lookup = {v['rune']: k for k, v in altbash_cicada_runes.items()}
+
+
+def translate_text_to_runes(text):
+    runes = []
+    primes = []
+    decimals = []
+    for char in text:
+        if char.upper() in cicada_runes:
+            rune_info = cicada_runes[char.upper()]
+            runes.append(rune_info['rune'])
+            primes.append(str(rune_info['prime']))
+            decimals.append(str(rune_info['number']))
+        elif char == ' ':
+            runes.append(cicada_runes[' ']['rune'])
+            primes.append(str(cicada_runes[' ']['prime']))
+            decimals.append('None')
+        elif char == '.':
+            runes.append(cicada_runes['.']['rune'])
+            primes.append(str(cicada_runes['.']['prime']))
+            decimals.append('None')
+    translated_runes = ''.join(runes)
+    translated_primes = ', '.join(primes)
+    translated_decimals = ', '.join(decimals)
+    return translated_runes, translated_decimals, translated_primes
+
+
+def translate_runes_to_text(runes):
+    text = [rune_to_text_lookup.get(rune, '?') for rune in runes]
+    return ''.join(text)
+
+
+def alternate_bash_cipher(text):
+    # Define custom mapping based on the given rune set
+    rune_set = 'ᚠᚢᚦᚩᚱᚳᚷᚹᚻᚾᛁᛄᛇᛈᛉᛋᛏᛒᛖᛗᛚᛝᛟᛞᚪᚫᚣᛡᛠ'
+    custom_mapping = {rune: rune_set[(i + 1) % len(rune_set)] for i, rune in enumerate(rune_set)}
+    encrypted_text = ''.join(custom_mapping.get(char, char) for char in text)
+    return encrypted_text
+
+
+def shift_altbash_runes(runes, shift_amount):
+    shifted_runes = ''
+    all_runes = list(altbash_cicada_runes.keys())  # Get a list of all runes
+    rune_count = len(all_runes)
+
+    for rune in runes:
+        if rune not in all_runes:
+            # Non-run character, add as is (punctuations, spaces etc.)
+            shifted_runes += rune
+        else:
+            # Find the current index of the rune and calculate the new index
+            current_index = all_runes.index(rune)
+            # Correctly apply the shift amount, ensuring it wraps around the list of runes
+            new_index = (current_index + shift_amount) % rune_count
+            shifted_runes += all_runes[new_index]
+    
+    return shifted_runes
+
+def translate_shifted_altbash_runes_to_properties(shifted_runes):
+    decimals = []
+    for rune in shifted_runes:
+        if rune in altbash_cicada_runes:
+            rune_info = altbash_cicada_runes[rune]
+            decimals.append(str(rune_info['number']))
+        else:
+            # Handle spaces or special characters not in rune list
+            decimals.append('None')
+    return ', '.join(decimals)
+
+
+def altbash_to_decimal(runes):
+    decimals = []
+    for rune in runes:
+        if rune in altbash_rune_to_text_lookup:
+            number = altbash_cicada_runes[altbash_rune_to_text_lookup[rune]]['number']
+            decimals.append(str(number))
+        else:
+            decimals.append('None')
+    return ', '.join(decimals)
+
+
+def vigenere_cipher(text, key):
+    key = key.upper()
+    key_index = 0
+    encoded_text = ''
+    for char in text:
+        if char.isalpha():
+            shift = ord(key[key_index]) - ord('A')
+            encoded_char = chr(((ord(char.upper()) - ord('A') + shift) % 26) + ord('A'))
+            encoded_text += encoded_char if char.isupper() else encoded_char.lower()
+            key_index = (key_index + 1) % len(key)
+        else:
+            encoded_text += char
+    return encoded_text
+
+
+def main():
+    print("Welcome to the Cicada Rune Translator!")
+    print("1. Translate text to runes")
+    print("2. Translate Cicada runes to text")
+    print("3. Alternate Bash Cipher")
+    print("4. Vigenère cipher")
+    print("5. Apply Euler's totient Prime function")
+    print("6. Convert AltBash to Decimal")
+    print("7. AltBash Decimal Shift")
+    print("8. Exit")
+
+    while True:
+        choice = input("Enter your choice: ")
+
+        if choice == '1':
+            text = input("Enter the text to translate: ")
+            runes, decimals, primes = translate_text_to_runes(text)
+            print("Translated to Cicada runes:", runes)
+            print("Numbers:", decimals)
+            print("Primes:", primes)
+        elif choice == '2':
+            runes = input("Enter the Cicada runes to translate: ")
+            print("Translated to text:", translate_runes_to_text(runes))
+            print("Numbers:", ', '.join(['None' if rune in ('᛫', '⁘') else str(cicada_runes[rune_to_text_lookup[rune]]['number']) for rune in runes]))
+            print("Primes:", ', '.join(['None' if rune in ('᛫', '⁘') else str(cicada_runes[rune_to_text_lookup[rune]]['prime']) for rune in runes]))
+        elif choice == '3':
+            text = input("Enter the text to encrypt: ")
+            print("Encrypted text:", alternate_bash_cipher(text))
+            shift_option = input("Would you like to shift the text? (yes/no): ").lower()
+            if shift_option == 'yes':
+                shift_amount = int(input("Enter the shift amount (0-28): "))
+                shifted_text = shift_altbash_runes(alternate_bash_cipher(text), shift_amount)
+                print("Shifted text:", shifted_text)
+                shifted_decimals = translate_shifted_altbash_runes_to_properties(shifted_text)
+                print("Shifted decimals:", shifted_decimals)
+        elif choice == '4':
+            text = input("Enter the text to encrypt/decrypt: ")
+            key = input("Enter the key: ")
+            print("Result:", vigenere_cipher(text, key))
+        elif choice == '5':
+            number = int(input("Enter a number to compute Euler's totient Prime function: "))
+            print("Result:", euler_totient_prime(number))
+        elif choice == '6':
+            altbash = input("Enter the AltBash to convert to Decimal: ")
+            print("Converted to Decimal:", altbash_to_decimal(altbash))
+        elif choice == '7':
+            altbash = input("Enter the AltBash to shift: ")
+            shift_amount = int(input("Enter the shift amount (0-28): "))
+            shifted_text = shift_altbash_runes(altbash, shift_amount)
+            print("Shifted AltBash:", shifted_text)
+            shifted_decimals = translate_shifted_altbash_runes_to_properties(shifted_text)
+            print("Shifted decimals:", shifted_decimals)
+        elif choice == '8':
+            print("Goodbye!")
+            break
+        else:
+            print("Invalid choice. Please enter a number between 1 and 8.")
+
+if __name__ == "__main__":
+    main() 
