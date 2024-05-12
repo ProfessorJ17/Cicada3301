@@ -1,0 +1,64 @@
+def shift_cicada_runes(runes, shift_amount, altbash3_cicada_runes):
+    shifted_runes = ''
+    for rune in runes:
+        # Find the rune in the dictionary by its 'rune' property
+        rune_info = next((value for key, value in altbash3_cicada_runes.items() if value['rune'] == rune), None)
+        if rune_info and rune_info['number'] is not None:
+            original_number = rune_info['number']
+            # Apply modulo 29 to wrap around the values
+            new_number = (original_number + shift_amount) % 29
+            # Handle negative shifts properly
+            if new_number < 0:
+                new_number += 29
+            # Find the shifted rune by its 'number' property
+            shifted_rune_info = next((value for key, value in altbash3_cicada_runes.items() if value['number'] == new_number), None)
+            if shifted_rune_info:
+                shifted_runes += shifted_rune_info['rune']
+            else:
+                shifted_runes += rune
+        else:
+            # Non-run character, add as is (punctuations, spaces etc.)
+            shifted_runes += rune
+
+    return shifted_runes
+
+altbash3_cicada_runes = {
+    'EA': {'number': 0, 'rune': 'ᛠ', 'prime': 2},
+    'IA(IO)': {'number': 1, 'rune': 'ᛡ', 'prime': 3},
+    'Y': {'number': 2, 'rune': 'ᚣ', 'prime': 5},
+    'AE': {'number': 3, 'rune': 'ᚫ', 'prime': 7},
+    'A': {'number': 4, 'rune': 'ᚪ', 'prime': 11},
+    'D': {'number': 5, 'rune': 'ᛞ', 'prime': 13},
+    'OE': {'number': 6, 'rune': 'ᛟ', 'prime': 17},
+    'NG(ING)': {'number': 7, 'rune': 'ᛝ', 'prime': 19},
+    'L': {'number': 8, 'rune': 'ᛚ', 'prime': 23},
+    'M': {'number': 9, 'rune': 'ᛗ', 'prime': 29},
+    'E': {'number': 10, 'rune': 'ᛖ', 'prime': 31},
+    'B': {'number': 11, 'rune': 'ᛒ', 'prime': 37},
+    'T': {'number': 12, 'rune': 'ᛏ', 'prime': 41},
+    'S(Z)': {'number': 13, 'rune': 'ᛋ', 'prime': 43},
+    'X': {'number': 14, 'rune': 'ᛉ', 'prime': 47},
+    'P': {'number': 15, 'rune': 'ᛈ', 'prime': 53},
+    'EO': {'number': 16, 'rune': 'ᛇ', 'prime': 59},
+    'J': {'number': 17, 'rune': 'ᛄ', 'prime': 61},
+    'I': {'number': 18, 'rune': 'ᛁ', 'prime': 67},
+    'N': {'number': 19, 'rune': 'ᚾ', 'prime': 71},
+    'H': {'number': 20, 'rune': 'ᚻ', 'prime': 73},
+    'W': {'number': 21, 'rune': 'ᚹ', 'prime': 79},
+    'G': {'number': 22, 'rune': 'ᚷ', 'prime': 83},
+    'C(K)': {'number': 23, 'rune': 'ᚳ', 'prime': 89},
+    'R': {'number': 24, 'rune': 'ᚱ', 'prime': 97},
+    'O': {'number': 25, 'rune': 'ᚩ', 'prime': 101},
+    'TH': {'number': 26, 'rune': 'ᚦ', 'prime': 103},
+    'V': {'number': 27, 'rune': 'ᚢ', 'prime': 107},
+    'F': {'number': 28, 'rune': 'ᚠ', 'prime': 109},
+    ' ': {'number': None, 'rune': '᛫', 'prime': None},
+    '.': {'number': None, 'rune': '⁘', 'prime': None},
+    '⁞': {'number': None, 'rune': '⁞', 'prime': None}
+}
+
+# Example usage:
+input_runes = input("Enter the Cicada runes to shift: ")
+shift_amount = int(input("Enter the shift amount (-28 to 28): "))
+shifted_runes = shift_cicada_runes(input_runes, shift_amount, altbash3_cicada_runes)
+print("Shifted Cicada runes:", shifted_runes)
