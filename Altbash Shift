@@ -1,26 +1,23 @@
-def shift_cicada_runes(runes, shift_amount, altbash3_cicada_runes):
-    shifted_runes = ''
+def decode_runes(runes):
+    decoded_text = ''
     for rune in runes:
         # Find the rune in the dictionary by its 'rune' property
         rune_info = next((value for key, value in altbash3_cicada_runes.items() if value['rune'] == rune), None)
         if rune_info and rune_info['number'] is not None:
-            original_number = rune_info['number']
-            # Apply modulo 29 to wrap around the values
-            new_number = (original_number + shift_amount) % 29
-            # Handle negative shifts properly
-            if new_number < 0:
-                new_number += 29
-            # Find the shifted rune by its 'number' property
-            shifted_rune_info = next((value for key, value in altbash3_cicada_runes.items() if value['number'] == new_number), None)
+            # Apply Atbash cipher
+            atbash_number = 28 - rune_info['number']
+            # Apply shift of 9
+            shifted_number = (atbash_number + 9) % 29
+            # Find the shifted rune in the dictionary
+            shifted_rune_info = next((value for key, value in altbash3_cicada_runes.items() if value['number'] == shifted_number), None)
             if shifted_rune_info:
-                shifted_runes += shifted_rune_info['rune']
+                # Append the text representation of the shifted rune
+                decoded_text += next(key for key, value in altbash3_cicada_runes.items() if value == shifted_rune_info)
             else:
-                shifted_runes += rune
+                decoded_text += rune  # If no match, append the original rune
         else:
-            # Non-run character, add as is (punctuations, spaces etc.)
-            shifted_runes += rune
-
-    return shifted_runes
+            decoded_text += rune  # Append non-rune characters as is
+    return decoded_text
 
 altbash3_cicada_runes = {
     'EA': {'number': 0, 'rune': 'ᛠ', 'prime': 2},
@@ -58,7 +55,6 @@ altbash3_cicada_runes = {
 }
 
 # Example usage:
-input_runes = input("Enter the Cicada runes to shift: ")
-shift_amount = int(input("Enter the shift amount (-28 to 28): "))
-shifted_runes = shift_cicada_runes(input_runes, shift_amount, altbash3_cicada_runes)
-print("Shifted Cicada runes:", shifted_runes)
+input_runes = input("Enter the runes to decode: ")
+decoded_text = decode_runes(input_runes)
+print("Decoded text:", decoded_text)
