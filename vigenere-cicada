@@ -1,0 +1,112 @@
+cicada_runes = {
+    'ᚠ': {'letter': 'F', 'number': 0, 'rune': 'ᚠ', 'prime': 2},
+    'ᚢ': {'letter': 'V', 'number': 1, 'rune': 'ᚢ', 'prime': 3},
+    'ᚦ': {'letter': 'TH', 'number': 2, 'rune': 'ᚦ', 'prime': 5},
+    'ᚩ': {'letter': 'O', 'number': 3, 'rune': 'ᚩ', 'prime': 7},
+    'ᚱ': {'letter': 'R', 'number': 4, 'rune': 'ᚱ', 'prime': 11},
+    'ᚳ': {'letter': 'C(K)', 'number': 5, 'rune': 'ᚳ', 'prime': 13},
+    'ᚷ': {'letter': 'G', 'number': 6, 'rune': 'ᚷ', 'prime': 17},
+    'ᚹ': {'letter': 'W', 'number': 7, 'rune': 'ᚹ', 'prime': 19},
+    'ᚻ': {'letter': 'H', 'number': 8, 'rune': 'ᚻ', 'prime': 23},
+    'ᚾ': {'letter': 'N', 'number': 9, 'rune': 'ᚾ', 'prime': 29},
+    'ᛁ': {'letter': 'I', 'number': 10, 'rune': 'ᛁ', 'prime': 31},
+    'ᛄ': {'letter': 'J', 'number': 11, 'rune': 'ᛄ', 'prime': 37},
+    'ᛇ': {'letter': 'EO', 'number': 12, 'rune': 'ᛇ', 'prime': 41},
+    'ᛈ': {'letter': 'P', 'number': 13, 'rune': 'ᛈ', 'prime': 43},
+    'ᛉ': {'letter': 'X', 'number': 14, 'rune': 'ᛉ', 'prime': 47},
+    'ᛋ': {'letter': 'S(Z)', 'number': 15, 'rune': 'ᛋ', 'prime': 53},
+    'ᛏ': {'letter': 'T', 'number': 16, 'rune': 'ᛏ', 'prime': 59},
+    'ᛒ': {'letter': 'B', 'number': 17, 'rune': 'ᛒ', 'prime': 61},
+    'ᛖ': {'letter': 'E', 'number': 18, 'rune': 'ᛖ', 'prime': 67},
+    'ᛗ': {'letter': 'M', 'number': 19, 'rune': 'ᛗ', 'prime': 71},
+    'ᛚ': {'letter': 'L', 'number': 20, 'rune': 'ᛚ', 'prime': 73},
+    'ᛝ': {'letter': 'NG(ING)', 'number': 21, 'rune': 'ᛝ', 'prime': 79},
+    'ᛟ': {'letter': 'OE', 'number': 22, 'rune': 'ᛟ', 'prime': 83},
+    'ᛞ': {'letter': 'D', 'number': 23, 'rune': 'ᛞ', 'prime': 89},
+    'ᚪ': {'letter': 'A', 'number': 24, 'rune': 'ᚪ', 'prime': 97},
+    'ᚫ': {'letter': 'AE', 'number': 25, 'rune': 'ᚫ', 'prime': 101},
+    'ᚣ': {'letter': 'Y', 'number': 26, 'rune': 'ᚣ', 'prime': 103},
+    'ᛡ': {'letter': 'IA(IO)', 'number': 27, 'rune': 'ᛡ', 'prime': 107},
+    'ᛠ': {'letter': 'EA', 'number': 28, 'rune': 'ᛠ', 'prime': 109},
+    '᛫': {'letter': ' ', 'number': None, 'rune': '᛫', 'prime': None},
+    '⁘': {'letter': '.', 'number': None, 'rune': '⁘', 'prime': None},
+    '⁞': {'letter': '⁞', 'number': None, 'rune': '⁞', 'prime': None},
+    '-': {'letter': '-', 'number': None, 'rune': '-', 'prime': None},
+    '&': {'letter': '&', 'number': None, 'rune': '&', 'prime': None},
+    '§': {'letter': '§', 'number': None, 'rune': '§', 'prime': None},
+    '/': {'letter': '/', 'number': None, 'rune': '/', 'prime': None},
+    '%': {'letter': '%', 'number': None, 'rune': '%', 'prime': None}
+}
+
+# Define the skip_indices list
+skip_indices = [62, 102, 115, 181, 217, 218, 333, 566, 596, 625, 689]
+
+decoded_cicada_runes = {
+    '0': {'letter': 'F'},
+    '1': {'letter': 'V'},
+    '2': {'letter': 'TH'},
+    '3': {'letter': 'O'},
+    '4': {'letter': 'R'},
+    '5': {'letter': 'C(K)'},
+    '6': {'letter': 'G'},
+    '7': {'letter': 'W'},
+    '8': {'letter': 'H'},
+    '9': {'letter': 'N'},
+    '10': {'letter': 'I'},
+    '11': {'letter': 'J'},
+    '12': {'letter': 'EO'},
+    '13': {'letter': 'P'},
+    '14': {'letter': 'X'},
+    '15': {'letter': 'S(Z)'},
+    '16': {'letter': 'T'},
+    '17': {'letter': 'B'},
+    '18': {'letter': 'E'},
+    '19': {'letter': 'M'},
+    '20': {'letter': 'L'},
+    '21': {'letter': 'NG(ING)'},
+    '22': {'letter': 'OE'},
+    '23': {'letter': 'D'},
+    '24': {'letter': 'A'},
+    '25': {'letter': 'AE'},
+    '26': {'letter': 'Y'},
+    '27': {'letter': 'IA(IO)'},
+    '28': {'letter': 'EA'},
+}
+
+def decode_vigenere_cipher(encoded_message, key):
+    """
+
+    """
+    decoded_message = ""
+    index = 0
+    for rune in encoded_message:
+        if rune in cicada_runes and cicada_runes[rune]['number'] is not None:
+            value = cicada_runes[rune]['number']
+            if index in skip_indices:
+                decoded_message += rune
+            else:
+                decoded_value = (value - key[index % len(key)]) % 29
+                decoded_message += decoded_cicada_runes[str(decoded_value)]['letter']
+            index += 1
+        elif rune in ['.', '-', '/', '%']:
+            decoded_message += rune
+    return decoded_message
+
+def main():
+    print("Welcome to the Rune Decoder!")
+    print("This program will decode a message encoded with the Vigenère cipher using runes.")
+    
+    # Prompt the user to enter the encoded message
+    encoded_message = input("Enter the encoded message: ")
+    
+    # Prompt the user to enter the key for the Vigenère cipher
+    key = list(map(int, input("Enter the key for the Vigenère cipher (numbers separated by spaces): ").split()))
+    
+    # Apply the Vigenère cipher to decode the message
+    decoded_message = decode_vigenere_cipher(encoded_message, key)
+    
+    # Print the decoded message
+    print("Decoded message:", decoded_message)
+
+if __name__ == "__main__":
+    main()
