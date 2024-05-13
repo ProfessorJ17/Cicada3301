@@ -1,9 +1,7 @@
-import math
-
-# Dictionaries for primes, runes, and Gematria
+# Dictionaries
 primes = {
     0: 2, 1: 3, 2: 5, 3: 7, 4: 11, 5: 13, 6: 17, 7: 19, 8: 23, 9: 29, 10: 31,
-    11: 37, 12: 41, 13: 43, 14: 47, 15: 53, 16: 59, 17: 61, 18: 67, 19: 71,
+    11: 37, 12: 41, 13: 43, 14: 47, 15: 53, 16: 59, 17: 61, 18: 67, 19: 71, 
     20: 73, 21: 79, 22: 83, 23: 89, 24: 97, 25: 101, 26: 103, 27: 107, 28: 109
 }
 
@@ -36,45 +34,49 @@ cicada_runes = {
     'ᚫ': {'prime': 25, 'char': 'ᚫ', 'letter': 'AE'},
     'ᚣ': {'prime': 26, 'char': 'ᚣ', 'letter': 'Y'},
     'ᛡ': {'prime': 27, 'char': 'ᛡ', 'letter': 'IA(IO)'},
-    'ᛠ': {'prime': 28, 'char': 'ᛠ', 'letter': 'EA'} 
+    'ᛠ': {'prime': 28, 'char': 'ᛠ', 'letter': 'EA'}
 }
 
-gematria = {
-    'A': 1, 'B': 2, 'C': 3, 'D': 4, 'E': 5, 'F': 6, 'G': 7, 'H': 8, 'I': 9,
-    'J': 10, 'K': 11, 'L': 12, 'M': 13, 'N': 14, 'O': 15, 'P': 16, 'Q': 17,
-    'R': 18, 'S': 19, 'T': 20, 'U': 21, 'V': 22, 'W': 23, 'X': 24, 'Y': 25, 'Z': 26
-}
+# Reverse mapping for decoding
+rune_to_prime = {value['char']: value['prime'] for value in cicada_runes.values()}
+prime_to_rune = {value['prime']: value['char'] for value in cicada_runes.values()}
+prime_to_letter = {value['prime']: value['letter'] for value in cicada_runes.values()}
 
-# Function to calculate Euler's totient function
-def phi(n):
-    count = 0
-    for i in range(1, n):
-        if math.gcd(i, n) == 1:
-            count += 1
-    return count
+# Function to compute the nth prime's phi value modulo 29
+def nth_prime_phi_modulo_29(n):
+    if n >= len(primes):
+        return 1  # Arbitrary value chosen when n is out of range
+    prime_number = primes[n]
+    phi_value = prime_number - 1
+    return phi_value % 29 if prime_number != 2 else 1
 
-# Function to decode the runes
-def decode_runes(rune_text):
-    plaintext = ''
-    i = 0
-    for rune in rune_text:
-        if rune == 'ᚠ':  # Skip the 'F' rune
+# Decode function
+def decode_runes(encoded_text):
+    decoded_message = []
+    skip_rune = 'ᚠ'
+    rune_keys = list(cicada_runes.keys())
+    n = 0
+
+    for char in encoded_text:
+        if char == skip_rune:
+            decoded_message.append(skip_rune)
             continue
 
-        prime_index = cicada_runes[rune]['prime']
-        nth_prime = primes[prime_index]
-        shift = phi(nth_prime) % 29
-        
-        letter = cicada_runes[rune]['letter']
-        if '(' in letter:  # Handle runes with multiple letter options
-            letter = letter[:letter.find('(')]
-        gematria_value = gematria[letter]
-        shifted_value = (gematria_value - shift) % 26  # Shift down in Gematria
-        plaintext += chr(shifted_value + ord('A'))
-        i += 1
-    return plaintext
+        if char in rune_to_prime:
+            prime_index = rune_to_prime[char]
+            shift = nth_prime_phi_modulo_29(n)
+            shifted_index = (prime_index - shift) % 29
+            decoded_char = prime_to_letter[shifted_index]
+            decoded_message.append(decoded_char)
+            n += 1
+        else:
+            decoded_message.append(char)
 
-# Example usage
-rune_text = "ᚫᛄ-ᛟᛋᚱ.ᛗᚣᛚᚩᚻ-ᚩᚫ-ᚳᚦᚷᚹ-ᚹᛚᚫ.ᛉ/\nᚩᚪᛈ-ᛗᛞᛞᚢᚷᚹ-ᛚ-ᛞᚾᚣᛄ-ᚳᚠᛡ-ᚫᛏ/\nᛈᛇᚪᚦ-ᚳᚫ./"
-plaintext = decode_runes(rune_text)
-print(f"Plaintext: {plaintext}")
+    return ''.join(decoded_message)
+
+# Encoded message
+encoded_message = "ᚫᛄ-ᛟᛋᚱ.ᛗᚣᛚᚩᚻ-ᚩᚫ-ᚳᚦᚷᚹ-ᚹᛚᚫ.ᛉ/ᚩᚪᛈ-ᛗᛞᛞᚢᚷᚹ-ᛚ-ᛞᚾᚣᛄ-ᚳᚠᛡ-ᚫᛏ/ᛈᛇᚪᚦ-ᚳᚫ./&36367763ab73783c7af284446c/59466b4cd653239a311cb7116/d4618dee09a8425893dc7500b/464fdaf1672d7bef5e891c6e227/4568926a49fb4f45132c2a8b4/&ᚳᛞ-ᚠᚾ-ᛡᛖ-ᚠᚾᚳᛝ-ᚱᚠ-ᚫᛁᚱᛞᛖ-ᛋᚣᛄᛠᚢ/ᛝᚹ-ᛉᚩ-ᛗᛠᚹᚠ-ᚱᚷᛡ-ᛝᚱᛒ-ᚫᚾᚢᛋ./"
+
+# Decode the message
+decoded_message = decode_runes(encoded_message)
+print("Decoded Message:", decoded_message)
