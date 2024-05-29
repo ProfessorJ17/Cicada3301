@@ -1,0 +1,222 @@
+cicada_runes = {
+    'F': {'number': 0, 'rune': 'ᚠ', 'prime': 2},
+    'V': {'number': 1, 'rune': 'ᚢ', 'prime': 3},
+    'TH': {'number': 2, 'rune': 'ᚦ', 'prime': 5},
+    'O': {'number': 3, 'rune': 'ᚩ', 'prime': 7},
+    'R': {'number': 4, 'rune': 'ᚱ', 'prime': 11},
+    'C(K)': {'number': 5, 'rune': 'ᚳ', 'prime': 13},
+    'G': {'number': 6, 'rune': 'ᚷ', 'prime': 17},
+    'W': {'number': 7, 'rune': 'ᚹ', 'prime': 19},
+    'H': {'number': 8, 'rune': 'ᚻ', 'prime': 23},
+    'N': {'number': 9, 'rune': 'ᚾ', 'prime': 29},
+    'I': {'number': 10, 'rune': 'ᛁ', 'prime': 31},
+    'J': {'number': 11, 'rune': 'ᛄ', 'prime': 37},
+    'EO': {'number': 12, 'rune': 'ᛇ', 'prime': 41},
+    'P': {'number': 13, 'rune': 'ᛈ', 'prime': 43},
+    'X': {'number': 14, 'rune': 'ᛉ', 'prime': 47},
+    'S(Z)': {'number': 15, 'rune': 'ᛋ', 'prime': 53},
+    'T': {'number': 16, 'rune': 'ᛏ', 'prime': 59},
+    'B': {'number': 17, 'rune': 'ᛒ', 'prime': 61},
+    'E': {'number': 18, 'rune': 'ᛖ', 'prime': 67},
+    'M': {'number': 19, 'rune': 'ᛗ', 'prime': 71},
+    'L': {'number': 20, 'rune': 'ᛚ', 'prime': 73},
+    'NG(ING)': {'number': 21, 'rune': 'ᛝ', 'prime': 79},
+    'OE': {'number': 22, 'rune': 'ᛟ', 'prime': 83},
+    'D': {'number': 23, 'rune': 'ᛞ', 'prime': 89},
+    'A': {'number': 24, 'rune': 'ᚪ', 'prime': 97},
+    'AE': {'number': 25, 'rune': 'ᚫ', 'prime': 101},
+    'Y': {'number': 26, 'rune': 'ᚣ', 'prime': 103},
+    'IA(IO)': {'number': 27, 'rune': 'ᛡ', 'prime': 107},
+    'EA': {'number': 28, 'rune': 'ᛠ', 'prime': 109},
+    ' ': {'number': None, 'rune': '᛫', 'prime': None},
+    '.': {'number': None, 'rune': '⁘', 'prime': None},
+    '⁞': {'number': None, 'rune': '⁞', 'prime': None},
+    '-': {'number': None, 'rune': '-', 'prime': None},
+    '&': {'number': None, 'rune': '&', 'prime': None},
+    '§': {'number': None, 'rune': '§', 'prime': None},
+    '/': {'number': None, 'rune': '/', 'prime': None},
+    '%': {'number': None, 'rune': '%', 'prime': None}
+}
+
+hebrew = {
+    'F': 'ס',
+    'V': 'בּ',
+    'TH': 'ת',
+    'O': 'וּ',
+    'R': 'ר',
+    'C(K)': 'כ',
+    'G': 'ג',
+    'W': 'ו',
+    'H': 'ה',
+    'N': 'נ',
+    'I': 'י',
+    'J': 'ז',
+    'EO': 'ע',
+    'P': 'פ',
+    'X': 'ק',
+    'S(Z)': 'שׁ',
+    'T': 'ט',
+    'B': 'ב',
+    'E': 'עֶ',
+    'M': 'מ',
+    'L': 'ל',
+    'NG(ING)': 'צ',
+    'OE': 'אֹ',
+    'D': 'ד',
+    'A': 'א',
+    'AE': 'אֵ',
+    'Y': 'יִ',
+    'IA(IO)': 'יָ',
+    'EA': 'אֶ',
+    ' ': ' ',
+    '.': '.',
+    '⁞': '⁞',
+    '-': '-',
+    '&': '&',
+    '§': '§',
+    '/': '/',
+    '%': '%'
+}
+
+japanese = {
+    'F': 'フ',
+    'V': 'ヴ',
+    'TH': 'サ',
+    'O': 'ウ',
+    'R': 'ラ',
+    'C(K)': 'カ',
+    'G': 'グ',
+    'W': 'ワ',
+    'H': 'ハ',
+    'N': 'ン',
+    'I': 'イ',
+    'J': 'ジ',
+    'EO': 'コ',
+    'P': 'パ',
+    'X': 'メ',
+    'S(Z)': 'シ',
+    'T': 'タ',
+    'B': 'バ',
+    'E': 'エ',
+    'M': 'マ',
+    'L': 'ラ',
+    'NG(ING)': 'ン',
+    'OE': 'オ',
+    'D': 'ダ',
+    'A': 'ア',
+    'AE': 'セ',
+    'Y': 'ヤ',
+    'IA(IO)': 'キ',
+    'EA': 'ケ',
+    ' ': ' ',
+    '.': '.',
+    '⁞': '⁞',
+    '-': '-',
+    '&': '&',
+    '§': '§',
+    '/': '/',
+    '%': '%'
+}
+
+alchemic = {
+    'F': '🜅',
+    'V': '🝧',
+    'TH': '🜒',
+    'O': '☉',
+    'R': '℞',
+    'C(K)': '☾',
+    'G': '❦',
+    'W': '♆',
+    'H': '♄',
+    'N': '🝂',
+    'I': '🜌',
+    'J': '𓂀',
+    'EO': '🝁',
+    'P': '☧',
+    'X': '𝕏',
+    'S(Z)': '🝉',
+    'T': '☥',
+    'B': '🝬',
+    'E': '🝗',
+    'M': '🝫',
+    'L': '🜐',
+    'NG(ING)': 'ŋ̊',
+    'OE': '🜤',
+    'D': '🜿',
+    'A': '⛤',
+    'AE': '🜁',
+    'Y': '⚧',
+    'IA(IO)': '♁',
+    'EA': '🜎',
+    ' ': ' ',
+    '.': '.',
+    '⁞': '⁞',
+    '-': '-',
+    '&': '&',
+    '/': '/',
+    '%': '%'
+}
+
+def translate(text, from_dict, to_dict):
+    translated = []
+    for char in text:
+        for key, value in from_dict.items():
+            if value['rune'] == char:
+                translated.append((key, to_dict.get(key, '?')))
+                break
+        else:
+            translated.append(('?', '.'))
+    return translated
+
+def print_translation(translations):
+    full_translation = ''
+    decimals = []
+    primes = []
+    letters = []
+    
+    for item in translations:
+        cicada_char, translated_char = item
+        full_translation += translated_char
+        decimals.append(str(cicada_runes[cicada_char]['number']) if cicada_char in cicada_runes else '?')
+        primes.append(str(cicada_runes[cicada_char]['prime']) if cicada_char in cicada_runes else '?')
+        letters.append(cicada_char)
+
+    print(full_translation)
+    print(" ".join(decimals))
+    print(" ".join(primes))
+    print(" ".join(letters))
+
+def main():
+    print("Hello, welcome to the Liber Secodus decoder!")
+    while True:
+        print("\nMenu:")
+        print("1. Translate Cicada Runes to Hebrew")
+        print("2. Translate Cicada Runes to Japanese")
+        print("3. Translate Cicada Runes to Alchemic")
+        print("4. Translate Hebrew to Cicada Runes")
+        print("5. Translate Japanese to Cicada Runes")
+        print("6. Translate Alchemic to Cicada Runes")
+        choice = input("Choose an option (1-6): ")
+
+        text = input("Enter the text to translate: ")
+
+        if choice == '1':
+            translations = translate(text, cicada_runes, hebrew)
+        elif choice == '2':
+            translations = translate(text, cicada_runes, japanese)
+        elif choice == '3':
+            translations = translate(text, cicada_runes, alchemic)
+        elif choice == '4':
+            translations = translate(text, hebrew, cicada_runes)
+        elif choice == '5':
+            translations = translate(text, japanese, cicada_runes)
+        elif choice == '6':
+            translations = translate(text, alchemic, cicada_runes)
+        else:
+            print("Invalid option, try again.")
+            continue
+        
+        print_translation(translations)
+
+if __name__ == "__main__":
+    main()
